@@ -1,0 +1,49 @@
+msgid ""
+msgstr "Project-Id-Version: tygh"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language-Team: Russian\n"
+"Language: ru_RU"
+
+msgctxt "Addons::name::ee_change_winrace"
+msgid "ee_change_winrace_name"
+msgstr "[efimchenko.ru] Изменения на сайте"
+
+msgctxt "Addons::description::ee_change_winrace"
+msgid "ee_change_winrace_description"
+msgstr "Модуль вносит изменения на сайт."
+
+msgctxt "SettingsSections::ee_change_winrace::general"
+msgid "ee_change_winrace_general"
+msgstr "Общее"
+
+msgctxt "SettingsOptions::ee_change_winrace::ee_change_winrace_active"
+msgid "ee_change_winrace_active"
+msgstr "Другие изменения"
+
+msgctxt "SettingsTooltips::ee_change_winrace::ee_change_winrace_active"
+msgid "ee_change_winrace_active_tooltips"
+msgstr "Пока на тесте hook name=companies:view"
+
+msgctxt "SettingsOptions::ee_change_winrace::ee_change_winrace_vendor"
+msgid "ee_change_winrace_vendor"
+msgstr "Регистрация продавца"
+
+msgctxt "SettingsTooltips::ee_change_winrace::ee_change_winrace_vendor"
+msgid "ee_change_winrace_vendor_tooltips"
+msgstr "Включает изменения формы регитсрации продавца"
+
+msgctxt "SettingsOptions::ee_change_winrace::ee_change_winrace_profile"
+msgid "ee_change_winrace_profile"
+msgstr "Профиль пользователя"
+
+msgctxt "SettingsTooltips::ee_change_winrace::ee_change_winrace_profile"
+msgid "ee_change_winrace_profile_tooltips"
+msgstr "Влючает изменения формы профиля пользователя"
+
+msgctxt "SettingsOptions::ee_change_winrace::ee_change_winrace_cart"
+msgid "ee_change_winrace_cart"
+msgstr "Изменения корзины"
+
+msgctxt "SettingsTooltips::ee_change_winrace::ee_change_winrace_cart"
+msgid "ee_change_winrace_cart_tooltips"
+msgstr "Изменяет корзину"
