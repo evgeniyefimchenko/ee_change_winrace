@@ -15,76 +15,63 @@
 						{if $k == 'C'}
 							<h2 class="my-profile__title firstProfileTitle">Мой профиль</h2>
 							<div class="form-profile__row-inputs">
-								<div class="form-profile__input-group">							
-									<label class="form-profile__input-label _form-error" for="user_data[email]" style="color: #999!important;">
-									<input name="user_data[email]" id="user_data[email]"  placeholder="Ваш Email*" required="" class="form-profile__input input show-on-focus__input" value="{$user_data.email}" data-value="" data-error="Не может быть пустым"
+                                <div class="text-field text-field_floating">
+                                    <input class="text-field__input" name="user_data[email]" id="user_data[email]" type="email" required="" value="{$user_data.email}" placeholder="Email" data-value="" data-error="Не может быть пустым" data-validate="" data-required="">
+                                    <label class="text-field__label" for="email">Ваш Email*</label>
+                                </div>
+                                <div class="text-field text-field_floating">
+                                    <input autocomplete="disabled" name="user_data[fields][74]" id="user_data[fields][74]" placeholder="ФИО или никнейм*" quired="" class="text-field__input" value="{$profile.fields.value.74}" data-value="" data-error="Не может быть пустым"
 									data-validate="" data-required="">
-									<div class="show-on-focus__label">Ваш Email*</div>
-									</label>
-								</div>
-								<div class="form-profile__input-group">							
-									<label class="form-profile__input-label _form-error" for="user_data[fields][74]" style="color: #999!important;">
-									<input autocomplete="disabled" name="user_data[fields][74]" id="user_data[fields][74]" placeholder="ФИО или никнейм*" quired="" class="form-profile__input input show-on-focus__input" value="{$profile.fields.value.74}" data-value="" data-error="Не может быть пустым"
-									data-validate="" data-required="">
-									<div class="show-on-focus__label active">ФИО или никнейм*</div>
-									</label>
-								</div>
-								<div class="form-profile__input-group">							
-									<label class="form-profile__input-label" style="color: #999!important;">
-										<input type="password" id="password1" placeholder="Пароль*" name="user_data[password1]" size="32" maxlength="32" class="form-profile__input input show-on-focus__input" autocomplete="off" value="">
-										<div class="show-on-focus__label every_grey">Пароль*</div>
-									</label>
-								</div>
+                                    <label class="text-field__label" for="email">ФИО или никнейм*</label>
+                                </div>
+                                <div class="text-field text-field_floating">
+                                    <input type="password" id="password1" placeholder="Пароль*" name="user_data[password1]" size="32" maxlength="32" class="text-field__input" autocomplete="off" value="">
+                                    <label class="text-field__label" for="password1">Пароль*</label>
+                                </div>
 							</div>
 							<div class="form-profile__row-inputs">
-								<div class="form-profile__input-group">
-									<label class="form-profile__input-label" for="user_data[phone]" style="color: #999!important;">
-									<input autocomplete="off" type="text" name="user_data[phone]" placeholder="Ваш телефон*" id="user_data[phone]" data-error="Не может быть пустым" data-validate="" data-required="phone"
-									data-inputmask="'mask': '+9(999)-999-99-99'" value="{$user_data.phone}" data-value="{$user_data.phone}" class="form-profile__input show-on-focus__input form-profile__input_date input fullInput" inputmode="text">									
-									<div class="show-on-focus__label every_grey">Ваш телефон*</div>
-									</label>
-								</div>						
-								<div class="form-profile__input-group">
-									<label class="form-profile__input-label" for="user_data[birthday]" style="color: #999!important;">
-									{$date_format = "%d/%m/%Y"}
-									{$extra = "required"}
-									{$date_meta = "form-profile__input input"}
-									{$date_id = "date_id"}
-									{$date_name = "user_data[fields][75]"}
-									{$date_val = $user_data.fields.75}
-									<input data-inputmask="'mask': '99/99/9999'" placeholder="Дата рождения*" type="text" id="date_id" name="{$date_name}" class="show-on-focus__input ty-calendar__input{if $date_meta} {$date_meta}{/if} cm-calendar"
-									value="{if $date_val}{$date_val|date_format:"`$date_format`"}{/if}" {$extra} size="10" autocomplete="disabled" />
-									<a class="cm-external-focus ty-calendar__link" data-ca-external-focus-id="{$date_id}">
-										{include_ext file="common/icon.tpl" class="ty-icon-calendar ty-calendar__button" title=__("calendar")}
-									</a>
-									<script>
-									(function(_, $) {$ldelim}
-										$.ceEvent('on', 'ce.commoninit', function(context) {
-											$('#{$date_id}').datepicker({
-												changeMonth: true,
-												duration: 'fast',
-												changeYear: true,
-												numberOfMonths: 1,
-												selectOtherMonths: true,
-												showOtherMonths: true,
-												firstDay: {if $settings.Appearance.calendar_week_format == "sunday_first"}0{else}1{/if},
-												dayNamesMin: ['{__("weekday_abr_0")}', '{__("weekday_abr_1")}', '{__("weekday_abr_2")}', '{__("weekday_abr_3")}', '{__("weekday_abr_4")}', '{__("weekday_abr_5")}', '{__("weekday_abr_6")}'],
-												monthNamesShort: ['{__("month_name_abr_1")|escape:"html"}', '{__("month_name_abr_2")|escape:"html"}', '{__("month_name_abr_3")|escape:"html"}', '{__("month_name_abr_4")|escape:"html"}', '{__("month_name_abr_5")|escape:"html"}', '{__("month_name_abr_6")|escape:"html"}', '{__("month_name_abr_7")|escape:"html"}', '{__("month_name_abr_8")|escape:"html"}', '{__("month_name_abr_9")|escape:"html"}', '{__("month_name_abr_10")|escape:"html"}', '{__("month_name_abr_11")|escape:"html"}', '{__("month_name_abr_12")|escape:"html"}'],
-												yearRange: 'c-70:c+0',
-												dateFormat: 'dd/mm/yy'
-											});
-										});
-									{$rdelim}(Tygh, Tygh.$));
-									</script>
-									<div class="show-on-focus__label every_grey">Дата рождения*</div>
-									</label>								
-								</div>						
-								<div class="form-profile__input-group">							
-									<label class="form-profile__input-label" style="color: #999!important;">
-										<input type="password" placeholder="Подтверждение пароля*" id="password2"  name="user_data[password2]" size="32" maxlength="32" class="show-on-focus__input form-profile__input input" autocomplete="off">
-										<div class="show-on-focus__label every_grey">Подтверждение пароля*</div>
-									</label>
-								</div>						
+                                <div class="text-field text-field_floating">
+                                    <input autocomplete="off" type="text" name="user_data[phone]" placeholder="Ваш телефон*" id="user_data[phone]" data-error="Не может быть пустым" data-validate="" data-required="phone"
+									data-inputmask="'mask': '+9(999)-999-99-99'" value="{$user_data.phone}" data-value="{$user_data.phone}" class="text-field__input" inputmode="text">
+                                    <label class="text-field__label" for="email">Ваш телефон*</label>
+                                </div>
+                                <div class="text-field text-field_floating">
+                                    {$date_format = "%d/%m/%Y"}
+                                    {$extra = "required"}
+                                    {$date_meta = "form-profile__input input"}
+                                    {$date_id = "date_id"}
+                                    {$date_name = "user_data[fields][75]"}
+                                    {$date_val = $user_data.fields.75}
+                                    <a class="cm-external-focus ty-calendar__link" data-ca-external-focus-id="{$date_id}">
+                                        {include_ext file="common/icon.tpl" class="ty-icon-calendar ty-calendar__button" title=__("calendar")}
+                                    </a>
+                                    <script>
+                                    (function(_, $) {$ldelim}
+                                        $.ceEvent('on', 'ce.commoninit', function(context) {
+                                            $('#{$date_id}').datepicker({
+                                                changeMonth: true,
+                                                duration: 'fast',
+                                                changeYear: true,
+                                                numberOfMonths: 1,
+                                                selectOtherMonths: true,
+                                                showOtherMonths: true,
+                                                firstDay: {if $settings.Appearance.calendar_week_format == "sunday_first"}0{else}1{/if},
+                                                dayNamesMin: ['{__("weekday_abr_0")}', '{__("weekday_abr_1")}', '{__("weekday_abr_2")}', '{__("weekday_abr_3")}', '{__("weekday_abr_4")}', '{__("weekday_abr_5")}', '{__("weekday_abr_6")}'],
+                                                monthNamesShort: ['{__("month_name_abr_1")|escape:"html"}', '{__("month_name_abr_2")|escape:"html"}', '{__("month_name_abr_3")|escape:"html"}', '{__("month_name_abr_4")|escape:"html"}', '{__("month_name_abr_5")|escape:"html"}', '{__("month_name_abr_6")|escape:"html"}', '{__("month_name_abr_7")|escape:"html"}', '{__("month_name_abr_8")|escape:"html"}', '{__("month_name_abr_9")|escape:"html"}', '{__("month_name_abr_10")|escape:"html"}', '{__("month_name_abr_11")|escape:"html"}', '{__("month_name_abr_12")|escape:"html"}'],
+                                                yearRange: 'c-70:c+0',
+                                                dateFormat: 'dd/mm/yy'
+                                            });
+                                        });
+                                    {$rdelim}(Tygh, Tygh.$));
+                                    </script>
+                                    <input data-inputmask="'mask': '99/99/9999'" placeholder="Дата рождения*" type="text" id="date_id" name="{$date_name}" class="text-field__input cm-calendar"
+                                    value="{if $date_val}{$date_val|date_format:"`$date_format`"}{/if}" {$extra} size="10" autocomplete="disabled"  name="user_data[email]" id="user_data[email]">
+                                    <label class="text-field__label" for="email">Дата рождения*</label>
+                                </div>			
+								<div class="text-field text-field_floating">
+                                    <input class="text-field__input" name="user_data[password2]" id="password2" type="password" size="32" maxlength="32" placeholder="Подтверждение пароля*" data-value="" data-error="Не может быть пустым" autocomplete="off">
+                                    <label class="text-field__label" for="password2">Подтверждение пароля*</label>
+                                </div>					
 							</div>
 						{/if}
 						{if $k != 'C'}
@@ -98,87 +85,80 @@
 								{$item_count = $item_count + 1}
 								{if $temp_count == 0}
 									<div class="form-profile__row-inputs">
-								{/if}							
-								<div class="form-profile__input-group">
-									{if isset($user_data[$props.field_name])}
+								{/if}
+                                <div class="text-field text-field_floating">
+                                    {if isset($user_data[$props.field_name])}
 										{$inputID = "user_data[`$props.field_name`]"}
 									{else}
 										{$inputID = "user_data[fields][`$props.field_id`]"}
-									{/if}								
-									<label class="form-profile__input-label" for="{$inputID}" style="color: #999!important;">
-									{if $props.field_name|strpos:"mail"}
-										{$required = 'email'}{$error_required = 'Неверный формат почты'}
-									{elseif $props.field_name|strpos:"phone"}
-										{$required = 'phone'}{$error_required = 'Не может быть пустым'}{*Нет проверки на валидность номера телефона*}
-									{else}
-										{$required = ''}{$error_required = 'Не может быть пустым'}
-									{/if}								
-									{if $props.field_type == 'I'}
-										<input autocomplete="off" placeholder="{$props.description}" name="{$inputID}"  id="{$inputID}"{if $props.required == 'Y'} required {/if}class="show-on-focus__input form-profile__input input {$props.class}"
-										value="{$profile[$props.field_name].value}" data-value="{$profile[$props.field_name].value}" data-error="{$error_required}" data-validate data-required="{$required}"/>
 									{/if}
-									{if $props.field_type == 'D'}
-										{$date_format = "%d/%m/%Y"}
-										{$extra = "required"}
-										{$date_meta = "form-profile__input input"}
-										{$date_id = "date_id"}
-										{$date_name = "`$inputID`"}
-										{$date_val = $profile[$props.field_name].value}
-										<input placeholder="{$props.description}" data-inputmask="'mask': '99/99/9999'" type="text" id="date_id" name="{$inputID}" class="show-on-focus__input ty-calendar__input{if $date_meta} {$date_meta}{/if} cm-calendar"
-										value="{if $date_val}{$date_val|date_format:"`$date_format`"}{/if}" {$extra} size="10" autocomplete="disabled" />
-										<a class="cm-external-focus ty-calendar__link" data-ca-external-focus-id="{$date_id}">
-											{include_ext file="common/icon.tpl" class="ty-icon-calendar ty-calendar__button" title=__("calendar")}
-										</a>
-										<script>
-										(function(_, $) {$ldelim}
-											$.ceEvent('on', 'ce.commoninit', function(context) {
-												$('#{$date_id}').datepicker({
-													changeMonth: true,
-													duration: 'fast',
-													changeYear: true,
-													numberOfMonths: 1,
-													selectOtherMonths: true,
-													showOtherMonths: true,
-													firstDay: {if $settings.Appearance.calendar_week_format == "sunday_first"}0{else}1{/if},
-													dayNamesMin: ['{__("weekday_abr_0")}', '{__("weekday_abr_1")}', '{__("weekday_abr_2")}', '{__("weekday_abr_3")}', '{__("weekday_abr_4")}', '{__("weekday_abr_5")}', '{__("weekday_abr_6")}'],
-													monthNamesShort: ['{__("month_name_abr_1")|escape:"html"}', '{__("month_name_abr_2")|escape:"html"}', '{__("month_name_abr_3")|escape:"html"}', '{__("month_name_abr_4")|escape:"html"}', '{__("month_name_abr_5")|escape:"html"}', '{__("month_name_abr_6")|escape:"html"}', '{__("month_name_abr_7")|escape:"html"}', '{__("month_name_abr_8")|escape:"html"}', '{__("month_name_abr_9")|escape:"html"}', '{__("month_name_abr_10")|escape:"html"}', '{__("month_name_abr_11")|escape:"html"}', '{__("month_name_abr_12")|escape:"html"}'],
-													yearRange: 'c-70:c+0',
-													dateFormat: 'dd/mm/yy'
-												});
-											});
-										{$rdelim}(Tygh, Tygh.$));
-										</script>									
-									{/if}
-									{if $props.field_type == 'E'}
-										<input name="{$inputID}" placeholder="{$props.description}" id="{$inputID}"{if $props.required == 'Y'} required {/if}class="show-on-focus__input form-profile__input input {$props.class}"
-										value="{$profile[$props.field_name].value}" data-value="{$profile[$props.field_name].value}" data-error="{$error_required}" data-validate data-required="{$required}"/>									
-									{/if}
-									{if $props.field_type == 'A'}
-										<select id="{$inputID}" class="form-profile__input input ty-profile-field__select-state cm-state cm-location-shipping" name="{$inputID}"
-										style="outline: 0!important; line-height: normal;">
-											{foreach from=$states.RU item=state}
-												<option {$profile[$props.field_name].value} {if $profile[$props.field_name].value == $state.code}selected="selected"{/if} value="{$state.code}">{$state.state}</option>
-											{/foreach}
-										</select>									
-									{/if}
-									{if $props.field_type == 'P'}
-										<input autocomplete="off"  placeholder="{$props.description}" type="text" name="{$inputID}" id="{$inputID}" data-error="{$error_required}" data-validate data-required="{$required}"
-										data-inputmask="'mask': '+9(999)-999-99-99'"
-										value="{$profile[$props.field_name].value}" data-value="{$profile[$props.field_name].value}" class="show-on-focus__input form-profile__input form-profile__input_date input">									
-									{/if}
-									{if $props.field_type == 'Z'}
-										<input autocomplete="off" type="text" placeholder="{$props.description}" name="{$inputID}" id="{$inputID}" data-error="{$error_required}" data-required="{$required}" data-validate
-										value="{$profile[$props.field_name].value}" data-inputmask="'mask': '999999'" data-value="{$profile[$props.field_name].value}" class="show-on-focus__input form-profile__input input">
-									{/if}
-									{if $props.field_name != 'b_s_default_address' and  $props.field_type != 'A'}
-										<span class="show-on-focus__label {if $props.field_type == 'D'} every_grey{/if}">{$props.description}</span>
-									{/if}
-
-									{if $props.field_type == 'A'}
-										<span class="show-on-focus__label_2 {if $props.field_type == 'D'} every_grey{/if}">{$props.description}</span>
-									{/if}								
-									</label>
-								</div>
+                                    {if $props.field_name|strpos:"mail"}
+                                            {$required = 'email'}{$error_required = 'Неверный формат почты'}
+                                        {elseif $props.field_name|strpos:"phone"}
+                                            {$required = 'phone'}{$error_required = 'Не может быть пустым'}{*Нет проверки на валидность номера телефона*}
+                                        {else}
+                                            {$required = ''}{$error_required = 'Не может быть пустым'}
+                                        {/if}								
+                                        {if $props.field_type == 'I'}
+                                        <input class="text-field__input" autocomplete="off" placeholder="{$props.description}" name="{$inputID}"  id="{$inputID}"{if $props.required == 'Y'} required {/if}
+                                            value="{$profile[$props.field_name].value}" data-value="{$profile[$props.field_name].value}" data-error="{$error_required}" data-validate data-required="{$required}">
+                                        {/if}
+                                        {if $props.field_type == 'D'}
+                                        {$date_format = "%d/%m/%Y"}
+                                        {$extra = "required"}
+                                        {$date_meta = "form-profile__input input"}
+                                        {$date_id = "date_id"}
+                                        {$date_name = "`$inputID`"}
+                                        {$date_val = $profile[$props.field_name].value}
+                                        <input class="text-field__input cm-calendar" placeholder="{$props.description}" data-inputmask="'mask': '99/99/9999'" type="text" id="date_id" name="{$inputID}"
+                                        value="{if $date_val}{$date_val|date_format:"`$date_format`"}{/if}" {$extra} size="10" autocomplete="disabled" >
+                                        <input />
+                                        <a class="cm-external-focus ty-calendar__link" data-ca-external-focus-id="{$date_id}">
+                                            {include_ext file="common/icon.tpl" class="ty-icon-calendar ty-calendar__button" title=__("calendar")}
+                                        </a>
+                                        <script>
+                                        (function(_, $) {$ldelim}
+                                            $.ceEvent('on', 'ce.commoninit', function(context) {
+                                                $('#{$date_id}').datepicker({
+                                                    changeMonth: true,
+                                                    duration: 'fast',
+                                                    changeYear: true,
+                                                    numberOfMonths: 1,
+                                                    selectOtherMonths: true,
+                                                    showOtherMonths: true,
+                                                    firstDay: {if $settings.Appearance.calendar_week_format == "sunday_first"}0{else}1{/if},
+                                                    dayNamesMin: ['{__("weekday_abr_0")}', '{__("weekday_abr_1")}', '{__("weekday_abr_2")}', '{__("weekday_abr_3")}', '{__("weekday_abr_4")}', '{__("weekday_abr_5")}', '{__("weekday_abr_6")}'],
+                                                    monthNamesShort: ['{__("month_name_abr_1")|escape:"html"}', '{__("month_name_abr_2")|escape:"html"}', '{__("month_name_abr_3")|escape:"html"}', '{__("month_name_abr_4")|escape:"html"}', '{__("month_name_abr_5")|escape:"html"}', '{__("month_name_abr_6")|escape:"html"}', '{__("month_name_abr_7")|escape:"html"}', '{__("month_name_abr_8")|escape:"html"}', '{__("month_name_abr_9")|escape:"html"}', '{__("month_name_abr_10")|escape:"html"}', '{__("month_name_abr_11")|escape:"html"}', '{__("month_name_abr_12")|escape:"html"}'],
+                                                    yearRange: 'c-70:c+0',
+                                                    dateFormat: 'dd/mm/yy'
+                                                });
+                                            });
+                                        {$rdelim}(Tygh, Tygh.$));
+                                        </script>									
+                                    {/if}
+                                    {if $props.field_type == 'E'}
+                                        <input class="text-field__input" name="{$inputID}" placeholder="{$props.description}" id="{$inputID}"{if $props.required == 'Y'} required {/if}
+                                        value="{$profile[$props.field_name].value}" data-value="{$profile[$props.field_name].value}" data-error="{$error_required}" data-validate data-required="{$required}">
+                                    {/if}
+                                    {if $props.field_type == 'A'}
+                                        <select id="{$inputID}" class="text-field__input" name="{$inputID}"
+                                        style="outline: 0!important; line-height: normal; padding-top: 1.1rem;">
+                                            {foreach from=$states.RU item=state}
+                                                <option {$profile[$props.field_name].value} {if $profile[$props.field_name].value == $state.code}selected="selected"{/if} value="{$state.code}">{$state.state}</option>
+                                            {/foreach}
+                                        </select>									
+                                    {/if}
+                                    {if $props.field_type == 'P'}
+                                        <input autocomplete="off"  placeholder="{$props.description}" type="text" name="{$inputID}" id="{$inputID}" data-error="{$error_required}" data-validate data-required="{$required}"
+                                        data-inputmask="'mask': '+9(999)-999-99-99'"
+                                        value="{$profile[$props.field_name].value}" data-value="{$profile[$props.field_name].value}" class="text-field__input">									
+                                    {/if}
+                                    {if $props.field_type == 'Z'}
+                                        <input autocomplete="off" type="text" placeholder="{$props.description}" name="{$inputID}" id="{$inputID}" data-error="{$error_required}" data-required="{$required}" data-validate
+                                        value="{$profile[$props.field_name].value}" data-inputmask="'mask': '999999'" data-value="{$profile[$props.field_name].value}" class="text-field__input">
+                                    {/if}
+                                    <label class="text-field__label" for="password2">{$props.description}</label>
+                                </div>
 								{$temp_count = $temp_count + 1}
 								{if $temp_count == 3 || $v|count == $item_count}
 									</div>
