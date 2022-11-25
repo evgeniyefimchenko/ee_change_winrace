@@ -47,3 +47,11 @@ msgstr "Изменения корзины"
 msgctxt "SettingsTooltips::ee_change_winrace::ee_change_winrace_cart"
 msgid "ee_change_winrace_cart_tooltips"
 msgstr "Изменяет корзину"
+
+msgctxt "SettingsOptions::ee_change_winrace::ee_change_winrace_product"
+msgid "ee_change_winrace_product"
+msgstr "Изменения правого блока товара"
+
+msgctxt "SettingsTooltips::ee_change_winrace::ee_change_winrace_product"
+msgid "ee_change_winrace_product_tooltips"
+msgstr "Изменяет блок цены, количества, продавец там же тусит"

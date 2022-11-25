@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <addon scheme="3.0">
     <id>ee_change_winrace</id>
-    <version>1.1.4</version>
+    <version>1.1.5</version>
     <status>active</status>
 	<priority>4294967295</priority>
     <auto_install>MULTIVENDOR,ULTIMATE</auto_install>
@@ -28,6 +28,10 @@
 						<default_value>Y</default_value>
                     </item>
                     <item id="ee_change_winrace_cart">                      
+                        <type>checkbox</type>
+						<default_value>Y</default_value>
+                    </item>
+                    <item id="ee_change_winrace_product">                      
                         <type>checkbox</type>
 						<default_value>Y</default_value>
                     </item>
