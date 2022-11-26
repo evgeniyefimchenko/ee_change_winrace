@@ -143,9 +143,8 @@
 								<div class="ut2-pb__short-descr" {live_edit name="product:short_description:{$product.product_id}"}>{$product.short_description nofilter}</div>
 							{/if}
 						</div>{* End col *}
-						<div class="col-right">{* Start col *}
-							{* ТУТ ВСТАВЛЯЕТСЯ БЛОК С ИНФОРМАЦИЕЙ О ПРОДАВЦЕ *}
-							ТУТ ВСТАВЛЯЕТСЯ БЛОК С ИНФОРМАЦИЕЙ О ПРОДАВЦЕ
+						<div class="col-right hidden">{* Start col *}
+							{* ТУТ ВСТАВЛЯЕТСЯ БЛОК С ИНФОРМАЦИЕЙ О ПРОДАВЦЕ /public_html/design/themes/abt__unitheme2/templates/addons/abt__unitheme2_mv/hooks/products/ab__motivation_block.pre.tpl *}
 							{hook name="products:ab__motivation_block"}{/hook}
 							
 							{if $settings.abt__ut2.products.custom_block_id|intval}
