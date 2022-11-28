@@ -30,12 +30,13 @@ function fn_ee_change_winrace_remake_profile_fields($fields) {
     return $profile;	
 }
 
-function fn_ee_change_winrace_order_placement_routines($order_id, $force_notification, $order_info, $_error, $redirect_url, $allow_external_redirect) {
-	$count = count($order_info['child_ids']);
-	if ($count) {
-		$key = md5('N' . __('order_placed') . __('text_order_placed_successfully') . '');
-		unset(Tygh::$app['session']['notifications'][$key]);
-		$message = 'Поздравляем! Вашы заказы размещены.';
-		fn_set_notification('N', __('order_placed'), $message);
+function fn_ee_change_winrace_order_placement_routines($order_id, $force_notification, $order_info, $_error, $redirect_url, $allow_external_redirect) {	
+	if ($order_info['is_parent_order'] == 'Y') {
+		$message = 'Поздравляем! Ваши <b>заказы</b> сформированы и оплачены.';		
+	} else {
+		$message = 'Поздравляем! Ваш <b>заказ</b> сформирован и оплачен.';
 	}
+	$key = md5('N' . __('order_placed') . __('text_order_placed_successfully') . '');
+	unset(Tygh::$app['session']['notifications'][$key]);
+	fn_set_notification('N', __('order_placed'), $message);
 }

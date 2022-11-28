@@ -1,10 +1,15 @@
 <div class="ty-checkout-complete__order-success">
-    <p>{__("text_order_placed_successfully")}
+    <p>
         {if $order_info}
             {if $order_info.child_ids}
-                Поздравляем! Заказы №{`,`|str_replace:`, №`, $order_info.child_ids} сформированы и оплачены!<a href="{"orders.search?period=A&order_id=`$order_info.child_ids`"|fn_url}">{__("order_details")}</a>
+				{$orders_ids = ','|explode:$order_info.child_ids}
+				Поздравляем! Заказы 
+				{foreach $orders_ids as $item}
+					<a href="{"orders.details?order_id=`$item`"|fn_url}">№{$item}</a> 
+				{/foreach}
+				сформированы и оплачены!                
             {else}
-                Поздравляем! Заказ №{$order_info.order_id} сформирован и оплачен!<a href="{"orders.details?order_id=`$order_info.order_id`"|fn_url}">{__("order_details")}</a>
+                Поздравляем! Заказ <a href="{"orders.details?order_id=`$order_info.order_id`"|fn_url}">№{$order_info.order_id}</a> сформирован и оплачен!
             {/if}
         {/if}
     </p>
