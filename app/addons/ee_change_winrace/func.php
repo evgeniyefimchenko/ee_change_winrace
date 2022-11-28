@@ -24,8 +24,18 @@ function fn_ee_change_winrace_remake_profile_fields($fields) {
         }
     }
     foreach ($fields[1] as $key => $value) {
-            $profile[$key]['value'] = $value;
-            $profile[$key]['field_name'] = $key;
+		$profile[$key]['value'] = $value;
+		$profile[$key]['field_name'] = $key;
     }
     return $profile;	
+}
+
+function fn_ee_change_winrace_order_placement_routines($order_id, $force_notification, $order_info, $_error, $redirect_url, $allow_external_redirect) {
+	$count = count($order_info['child_ids']);
+	if ($count) {
+		$key = md5('N' . __('order_placed') . __('text_order_placed_successfully') . '');
+		unset(Tygh::$app['session']['notifications'][$key]);
+		$message = 'Поздравляем! Вашы заказы размещены.';
+		fn_set_notification('N', __('order_placed'), $message);
+	}
 }

@@ -2,9 +2,9 @@
     <p>{__("text_order_placed_successfully")}
         {if $order_info}
             {if $order_info.child_ids}
-                <a href="{"orders.search?period=A&order_id=`$order_info.child_ids`"|fn_url}">{__("order_details")}</a>
+                Поздравляем! Заказы №{`,`|str_replace:`, №`, $order_info.child_ids} сформированы и оплачены!<a href="{"orders.search?period=A&order_id=`$order_info.child_ids`"|fn_url}">{__("order_details")}</a>
             {else}
-                <a href="{"orders.details?order_id=`$order_info.order_id`"|fn_url}">{__("order_details")}</a>
+                Поздравляем! Заказ №{$order_info.order_id} сформирован и оплачен!<a href="{"orders.details?order_id=`$order_info.order_id`"|fn_url}">{__("order_details")}</a>
             {/if}
         {/if}
     </p>
