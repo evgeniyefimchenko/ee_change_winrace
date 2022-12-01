@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <addon scheme="3.0">
     <id>ee_change_winrace</id>
-    <version>1.1.6</version>
+    <version>1.1.6.1</version>
     <status>active</status>
 	<priority>4294967295</priority>
     <auto_install>MULTIVENDOR,ULTIMATE</auto_install>

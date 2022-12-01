@@ -50,8 +50,8 @@ msgstr "Изменяет корзину"
 
 msgctxt "SettingsOptions::ee_change_winrace::ee_change_winrace_product"
 msgid "ee_change_winrace_product"
-msgstr "Изменения правого блока товара"
+msgstr "Изменения карточки товара"
 
 msgctxt "SettingsTooltips::ee_change_winrace::ee_change_winrace_product"
 msgid "ee_change_winrace_product_tooltips"
-msgstr "Изменяет блок цены, количества, продавец там же тусит"
+msgstr "Изменяет блок цены, количества, продавеца. Имеет несколько оверрайдов"
