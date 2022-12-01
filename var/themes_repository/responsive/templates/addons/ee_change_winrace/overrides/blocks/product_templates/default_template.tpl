@@ -136,18 +136,16 @@
 								<div class="ut2-pb__short-descr" {live_edit name="product:short_description:{$product.product_id}"}>{$product.short_description nofilter}</div>
 							{/if}
 						</div>{* End col *}
-						<?php /* Требуется оставиль для возможности использовать ab__motivation_block если приспичит
+						{*Требуется оставиль для возможности использовать ab__motivation_block если приспичит*}
+						{if 1 == 0}
 						<div class="col-right hidden">{* Start col *}
 							{* ТУТ ВСТАВЛЯЕТСЯ БЛОК С ИНФОРМАЦИЕЙ О ПРОДАВЦЕ /public_html/design/themes/abt__unitheme2/templates/addons/abt__unitheme2_mv/hooks/products/ab__motivation_block.pre.tpl *}
 							{hook name="products:ab__motivation_block"}{/hook}
-							
 							{if $settings.abt__ut2.products.custom_block_id|intval}
 								{render_block block_id=$settings.abt__ut2.products.custom_block_id|intval dispatch="products.view" use_cache=false parse_js=false}
 							{/if}
-
 							{* Remove if using hook in motivation block *}
 							{hook name="products:geo_maps"}{/hook}
-
 							{hook name="products:promo_text"}
 							{if $product.promo_text}
 								<div class="ut2-pb__note">
@@ -155,17 +153,14 @@
 								</div>
 							{/if}
 							{/hook}
-
 							{if $settings.abt__ut2.products.view.show_features[$settings.abt__device] == 'Y'}
 								<div>
 									{include file="views/products/components/product_features_short_list.tpl" features=$product.header_features}
 								</div>
 							{/if}
-
 							{hook name="products:product_detail_bottom"}{/hook}
-
 						</div>{* End col *}
-						*/?>
+						{/if}
 					</div>
 
 					<div class="info-brand__cart">
