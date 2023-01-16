@@ -1,5 +1,6 @@
 @charset "UTF-8";
 @import url(https://fonts.googleapis.com/css?family=Roboto:300, 300italic, regular, italic, 500, 700, 900&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700&display=swap);
 [class*="_icon-"]:before {
     font-family: icons;
     font-style: normal;
@@ -50,7 +51,7 @@ html {
 body {
     color: #000;
     line-height: 1;
-    font-family: Roboto;
+    font-family: 'Roboto', sans-serif !important;
     font-size: 0.875rem;
     -ms-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
@@ -61,7 +62,7 @@ body {
 button,
 input,
 textarea {
-    font-family: Roboto;
+    font-family: 'Roboto', sans-serif !important;
     font-size: inherit;
 }
 button {
@@ -143,7 +144,7 @@ h6 {
 }
 .checkbox .checkbox__input:checked + .checkbox__label:before {
     content: "";
-    background: url(../image/checked.svg) center center no-repeat, #349141 !important;
+    background: url(../image/checked2.svg) center center no-repeat, #349141 !important;
     background-size: auto !important;
     top: -5% !important;
     left: 0 !important;
@@ -279,20 +280,11 @@ h6 {
     line-height: 1.3333333333 !important;
     margin-left: 0.3125rem !important;
 }
-.no-webp .banner-my-profile {
-    /*background: url(../img/bg-banner.png);*/
-}
 .banner-my-profile {
-    /*
-    display: -webkit-box !important;
-    display: -ms-flexbox !important;
-    display: flex !important;
-    -webkit-column-gap: 30px !important;
-    -moz-column-gap: 30px !important;
-    column-gap: 30px !important;
-    background-size: cover !important;
-    padding: 1.5625rem 1.25rem 1.375rem 1.25rem !important;
-    height: 100% !important;*/
+    background: url(../../../media/images/addons/ee_change_winrace/bg-banner.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     height: 100px;
     width: 1200px;
 }
@@ -338,19 +330,6 @@ h6 {
 .banner-my-profile__button:hover {
     background: #b5e7bc !important;
 }
-/*
-.no-webp .banner-my-profile__button:after {
-    background: url(../img/banner-icon.png) 0 0 no-repeat;
-}
-
-.banner-my-profile__button:after {
-    content: "";
-    position: absolute !important;
-    width: 20px !important;
-    height: 20px !important;
-    right: 20px !important;
-    top: 25% !important;
-}*/
 .form-profile__row-inputs {
     display: -ms-grid !important;
     display: grid !important;
@@ -439,9 +418,9 @@ h6 {
     flex-direction: column !important;
     margin-left: 0 !important;
 }
-.form-profile__bottom_seller {
+/* .form-profile__bottom_seller {
     margin: 40px 0 40px 10px !important;
-}
+} */
 .date-icon {
     position: relative !important;
 }
@@ -532,13 +511,6 @@ h6 {
         margin-bottom: 0;
     }
 }
-@media (max-width: 1200px) {
-    .banner-my-profile {
-        -ms-flex-wrap: wrap !important;
-        flex-wrap: wrap !important;
-        row-gap: 25px !important;
-    }
-}
 @media (max-width: 1024px) {
     .form-profile__half-row-inputs {
         -ms-grid-columns: 1fr !important;
@@ -616,21 +588,6 @@ h6 {
         background: #276b30;
     }
 }
-/*
-.webp .banner-my-profile {
-    background: url(../img/bg-banner.webp) 0 0 no-repeat;
-}
-.webp .banner-my-profile__button:after {
-    background: url(../img/banner-icon.webp) 0 0 no-repeat;
-}
-*/
-
-.banner-my-profile__button:hover {
-    background: #3d8b47 !important;
-}
-.banner-my-profile__button:active {
-    background: #377940 !important;
-}
 
 .form-profile__input-label {
     /* min-height: 78px; */
@@ -656,8 +613,6 @@ body .form-profile__input-group {
 
 
 .show-on-focus__label.active {
-
-
     display: block;
     color: #b3b3b3;
     opacity: 1;
@@ -680,5 +635,55 @@ body .form-profile__input-group {
     top: 5px;
 }
 
+h1.my-profile__title {
+    font-family: 'Roboto', sans-serif !important;
+    font-size: 50px !important;
+    font-weight: 400 !important;
+}
 
+h2.my-profile__title {
+    font-family: 'Roboto', sans-serif !important;
+    font-size: 40px !important;
+    font-weight: 400 !important;
+    margin-top: 0;
+}
 
+.select-drop {
+    position: relative;
+    display: inline-block;
+}
+.select-drop:after {
+    content: url(../../../media/images/addons/ee_change_winrace/dropicon.svg);
+    padding: 0 8px;
+    font-size: 12px;
+    position: absolute;
+    right: -8px;
+    top: 18px;
+    z-index: 1;
+    text-align: center;
+    width: 10%;
+    height: 100%;
+    pointer-events: none;
+    box-sizing: border-box;
+}
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+@media screen and (max-width: 768px) {
+    .banner-my-profile__button {
+        margin-top: 12px;
+        width: 100%;
+    }
+    body .vendor-cont .text-field {
+        padding: 0 !important;
+    }
+    .text-field {
+        margin-bottom: 15px !important;
+    }
+    .my-profile__title {
+        margin-bottom: 15px !important;
+    }
+}

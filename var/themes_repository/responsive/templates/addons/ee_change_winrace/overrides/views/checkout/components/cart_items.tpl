@@ -17,9 +17,10 @@
 			<tr>
 				<th class="ty-cart-content__title ty-left">{__("product")}</th>
 				<th class="ty-cart-content__title ty-left">&nbsp;</th>
-				<th class="ty-cart-content__title ty-right">{__("unit_price")}</th>
+				<th class="ty-cart-content__title ty-center">{__("unit_price")}</th>
 				<th class="ty-cart-content__title quantity-cell">{__("quantity")}</th>
-				<th class="ty-cart-content__title ty-right">{__("total_price")}</th>
+				<th class="ty-cart-content__title ty-left">{__("total_price")}</th>
+				<th class="ty-cart-content__title ty-left"></th>
 				<th class="ty-cart-content__title ty-left"></th>
 			</tr>
 		</thead>
@@ -110,14 +111,14 @@
 								{/if}
 								{/capture}
 
-								{if $smarty.capture.$name|trim}
-								<div id="options_{$key}" class="ty-product-options ty-group-block">
+								{*if $smarty.capture.$name|trim*}
+								<!-- <div id="options_{$key}" class="ty-product-options ty-group-block">
 									<div class="ty-group-block__arrow">
 										<span class="ty-caret-info"><span class="ty-caret-outer"></span><span class="ty-caret-inner"></span></span>
 									</div>
-									<bdi>{$smarty.capture.$name nofilter}</bdi>
-								</div>
-								{/if}
+									<bdi>{*$smarty.capture.$name nofilter*}</bdi>
+								</div> -->
+								{*/if*}
 							</td>
 
 							<td class="ty-cart-content__product-elem ty-cart-content__price cm-reload-{$obj_id}" id="price_display_update_{$obj_id}">
@@ -162,11 +163,18 @@
 									<input type="hidden" name="cart_products[{$key}][price]" value="{$product.base_price}" />
 								{/if}
 							<!--price_subtotal_update_{$obj_id}--></td>
+							<td class="td-ico-cart favorites">
+								{if !$product.exclude_from_calculate}                            
+									<a class="{$ajax_class} ty-cart-content__product-delete ty-delete-big" href="{"checkout.delete?cart_id=`$key`&redirect_mode=`$runtime.mode`"|fn_url}" data-ca-target-id="cart_items,checkout_totals,cart_status*,checkout_steps,checkout_cart" title="{__("remove")}">
+									<div></div>
+									</a>                        
+								{/if}						
+							</td>
 							<td class="td-ico-cart">
 								{if !$product.exclude_from_calculate}                            
 									<a class="{$ajax_class} ty-cart-content__product-delete ty-delete-big" href="{"checkout.delete?cart_id=`$key`&redirect_mode=`$runtime.mode`"|fn_url}" data-ca-target-id="cart_items,checkout_totals,cart_status*,checkout_steps,checkout_cart" title="{__("remove")}">
 									<div></div>
-									</a>                            
+									</a>                        
 								{/if}						
 							</td>
 						</tr>
@@ -180,7 +188,35 @@
 
 		</tbody>
 		</table>
-	<!--cart_items--></div>
+	<!--cart_items-->
+
+		{include file="views/checkout/components/checkout_totals.tpl" location="cart"}
+		<div class="buttons-container ty-cart-content__bottom-buttons clearfix">
+			<div class="ty-float-left ty-cart-content__left-buttons">
+				{*hook name="checkout:cart_content_bottom_left_buttons"*}
+					{*include file="buttons/continue_shopping.tpl" but_href=$continue_url|fn_url*}
+				{*/hook*}
+				<a href="https://devops.winrace.ru/" class="ty-btn ty-btn__secondary ">
+					<span class="icons-cart icon-justbuy"></span>	
+					<bdi>Продолжить покупки</bdi>
+				</a>
+			</div>
+			<div class="ty-float-right ty-cart-content__right-buttons">
+				{*hook name="checkout:cart_content_bottom_right_buttons"*}
+					{*if $payment_methods*}
+						{*assign var="link_href" value="checkout.checkout"*}
+						{*include file="buttons/proceed_to_checkout.tpl"*}
+					{*/if*}
+				{*/hook*}
+				<a href="https://devops.winrace.ru/checkout/" class="ty-btn ty-btn__primary ">
+					<span class="icons-cart icon-order"></span>
+					<bdi>Оформить заказ</bdi>
+				</a>
+			</div>
+		</div>
+
+	</div>
+	
 	<!-- /responsive/templates/addons/ee_change_winrace/overrides/views/checkout/components/cart_items.tpl -->
 	{/capture}
 	{include file="common/mainbox_cart.tpl" title=__("cart_items") content=$smarty.capture.cartbox}

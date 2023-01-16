@@ -2,14 +2,14 @@
     justify-content: space-between;
 }
 .ut2-pb__right {
-    padding: 19px;
-    max-width: 380px;
+    padding: 19px !important;
+    max-width: 380px !important;
     border: 1px solid #000;
 }
 .ut2-pb .top-product-layer {
-    border-bottom: initial;
-    margin: initial;
-    padding: initial;
+    border-bottom: initial !important;
+    margin: initial !important;
+    padding: initial !important;
 }
 .info-brand__cart {
     padding: 10px 0;
@@ -69,11 +69,11 @@
 
 @media (max-width: 480px) {
     .ut2-pb .top-product-layer {
-        background: initial;
-        justify-content: flex-start;
+        background: initial !important;
+        justify-content: flex-start !important;
     }
 }
 
 .ut2-pb__button > [id*="add_to_cart"] {
-    justify-content: flex-start;
+    justify-content: flex-start !important;
 }

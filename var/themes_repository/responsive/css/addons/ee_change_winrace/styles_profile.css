@@ -299,9 +299,6 @@
 input[type="text"].form-profile__input, input.form-profile__input, input[type="password"].form-profile__input, select.form-profile__input
 {
 	position:relative!important;
-	-webkit-appearance:none!important;
-	-moz-appearance:none!important;
-	appearance:none!important;
 	margin:0!important;
 	border: 1px solid rgba(0, 0, 0, 0.2);
 	/* border-radius: 4px; */
@@ -630,7 +627,7 @@ select:not(:placeholder-shown).form-profile__input {
 }
 
 .checkbox .checkbox__input:checked + .checkbox__label:before {
-    content: '✓';
+    content: url(../../../media/images/addons/ee_change_winrace/checked_2.svg);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -654,21 +651,10 @@ select:not(:placeholder-shown).form-profile__input {
 	margin: 10px 0 32px 0 !important;
 }
 
-.checkbox__text {
-    display: flex;
-    align-items: center;
-}
-
 .checkbox__text a {
-    margin-left: 5px;
     color: #49a355!important;
     text-decoration: underline;
     font-weight: 500;
-}
-
-.banner-my-profile__text {
-	letter-spacing: 0.54px !important;
-	left: 21%;
 }
 
 .form-profile__bottom button {
@@ -676,7 +662,7 @@ select:not(:placeholder-shown).form-profile__input {
 	height: initial !important;
 }
 
-input, textarea, select {
+input, textarea {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 }
@@ -718,9 +704,6 @@ background-clip: padding-box;
 border: 1px solid #bdbdbd;
 border-radius: 4px;
 transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
--webkit-appearance: none;
--moz-appearance: none;
-appearance: none;
 }
 
 .text-field__input[type="search"]::-webkit-search-decoration,

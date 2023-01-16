@@ -6,20 +6,27 @@
 	<input type="hidden" name="redirect_mode" value="cart" />
 	<input type="hidden" name="result_ids" value="{$result_ids}" />
 
-	<h1 class="ty-mainbox-title">{__("cart_contents")}</h1>
+	<div class="title-cart__container">
+		<h1 class="ty-mainbox-title">{__("cart_contents")}</h1>
+		{*include file="buttons/clear_cart.tpl" but_href="checkout.clear" but_role="text" but_meta="cm-confirm ty-cart-content__clear-button"*}
+		<a href="/index.php?dispatch=checkout.clear" class="ty-btn ty-btn__secondary ">
+			<span class="icons-cart icon-cart"></span>	
+			<bdi>Очистить корзину</bdi>
+		</a>
+	</div>
 
 	{include file="views/checkout/components/cart_items.tpl" disable_ids="button_cart"}
 
 	</form>
 	<!--checkout_form_wrapper--></div>
 
-	{include file="views/checkout/components/checkout_totals.tpl" location="cart"}
-
-	<div class="buttons-container ty-cart-content__bottom-buttons clearfix">
+	{*include file="views/checkout/components/checkout_totals.tpl" location="cart"*}
+	<!--
+	 <div class="buttons-container ty-cart-content__bottom-buttons clearfix">
 		<div class="ty-float-left ty-cart-content__left-buttons">
 			{hook name="checkout:cart_content_bottom_left_buttons"}
 				{include file="buttons/continue_shopping.tpl" but_href=$continue_url|fn_url}
-				{*include file="buttons/clear_cart.tpl" but_href="checkout.clear" but_role="text" but_meta="cm-confirm ty-cart-content__clear-button"*}
+				{include file="buttons/clear_cart.tpl" but_href="checkout.clear" but_role="text" but_meta="cm-confirm ty-cart-content__clear-button"}
 			{/hook}
 		</div>
 		<div class="ty-float-right ty-cart-content__right-buttons">
@@ -31,6 +38,7 @@
 			{/hook}
 		</div>
 	</div>
+	-->
 	{if $checkout_add_buttons}
 		<div class="ty-cart-content__payment-methods payment-methods" id="payment-methods">
 			<span class="ty-cart-content__payment-methods-title payment-metgods-or">{__("or_use")}</span>
@@ -80,24 +88,6 @@
 	</form>
 	<!--checkout_form_wrapper--></div>
 
-	{include file="views/checkout/components/checkout_totals.tpl" location="cart"}
-
-	<div class="buttons-container ty-cart-content__bottom-buttons clearfix">
-		<div class="ty-float-left ty-cart-content__left-buttons">
-			{hook name="checkout:cart_content_bottom_left_buttons"}
-				{include file="buttons/continue_shopping.tpl" but_href=$continue_url|fn_url}
-				{include file="buttons/clear_cart.tpl" but_href="checkout.clear" but_role="text" but_meta="cm-confirm ty-cart-content__clear-button"}
-			{/hook}
-		</div>
-		<div class="ty-float-right ty-cart-content__right-buttons">
-			{hook name="checkout:cart_content_bottom_right_buttons"}
-				{if $payment_methods}
-					{assign var="link_href" value="checkout.checkout"}
-					{include file="buttons/proceed_to_checkout.tpl"}
-				{/if}
-			{/hook}
-		</div>
-	</div>
 	{if $checkout_add_buttons}
 		<div class="ty-cart-content__payment-methods payment-methods" id="payment-methods">
 			<span class="ty-cart-content__payment-methods-title payment-metgods-or">{__("or_use")}</span>
