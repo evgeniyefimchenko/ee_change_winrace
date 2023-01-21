@@ -165,14 +165,19 @@
 							<!--price_subtotal_update_{$obj_id}--></td>
 							<td class="td-ico-cart favorites">
 								{if !$product.exclude_from_calculate}                            
-									<a class="{$ajax_class} ty-cart-content__product-delete ty-delete-big" href="{"checkout.delete?cart_id=`$key`&redirect_mode=`$runtime.mode`"|fn_url}" data-ca-target-id="cart_items,checkout_totals,cart_status*,checkout_steps,checkout_cart" title="{__("remove")}">
-									<div></div>
-									</a>                        
+									{if !$hide_wishlist_button}
+										{include file="addons/wishlist/views/wishlist/components/add_to_wishlist.tpl"
+											wishlist_but_id="button_wishlist_`$obj_prefix``$product.product_id`"
+											wishlist_but_name="dispatch[wishlist.add..`$product.product_id`]"
+											wishlist_but_role="text"
+										}
+									{/if}
+									<input type="hidden" name="product_data[$product.product_id][product_id]" value="{$product.product_id}">
 								{/if}						
 							</td>
 							<td class="td-ico-cart">
 								{if !$product.exclude_from_calculate}                            
-									<a class="{$ajax_class} ty-cart-content__product-delete ty-delete-big" href="{"checkout.delete?cart_id=`$key`&redirect_mode=`$runtime.mode`"|fn_url}" data-ca-target-id="cart_items,checkout_totals,cart_status*,checkout_steps,checkout_cart" title="{__("remove")}">
+									<a class="{$ajax_class} cm-tooltip ty-cart-content__product-delete ty-delete-big" href="{"checkout.delete?cart_id=`$key`&redirect_mode=`$runtime.mode`"|fn_url}" data-ca-target-id="cart_items,checkout_totals,cart_status*,checkout_steps,checkout_cart" title="{__("remove")}">
 									<div></div>
 									</a>                        
 								{/if}						

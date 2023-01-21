@@ -4,7 +4,7 @@
 			<li class="ty-cart-statistic__item ty-cart-statistic__total">
 				<span class="ty-cart-statistic__total-title">Общая стоимость всех товаров:</span>
 				<span class="ty-cart-statistic__total-value">
-					{include file="common/price.tpl" value=$_total|default:$smarty.capture._total|default:$cart.total span_id="cart_total" class="ty-price"}
+					{include file="common/price.tpl" value=$_total|default:$smarty.capture._total|default:$cart.subtotal span_id="cart_total" class="ty-price"}
 				</span>
 			</li>
 		</ul>
