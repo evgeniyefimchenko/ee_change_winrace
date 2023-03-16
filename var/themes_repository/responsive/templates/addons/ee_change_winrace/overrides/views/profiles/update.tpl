@@ -1,11 +1,203 @@
+<link type="text/css" rel="stylesheet" href="/design/themes/responsive/css/addons/ee_change_winrace/air-datepicker.css">
+<script>
+    var phone_input_mask = document.querySelector("input[name='user_data[phone]']");
+    var phone_input_mask_s = document.querySelector("input[name='user_data[s_phone]']");
+    
+    phone_input_mask.addEventListener('focus', () => {
+        if (!phone_input_mask.value.startsWith('+7')) {
+            phone_input_mask.value = '+7' + phone_input_mask.value;
+        }
+        if (!phone_input_mask_s.value.startsWith('+7')) {
+            phone_input_mask_s.value = '+7' + phone_input_mask_s.value;
+        }
+    });
+    
+    phone_input_mask.addEventListener('blur', () => {
+        if (phone_input_mask.value.charAt(3) == '_') {
+            phone_input_mask.value = "";
+            phone_input_mask_s.value = "";
+        }
+    });
+    
+    var password = document.getElementsByName("user_data[password1]")[0];
+    var passwordConfirm = document.getElementsByName("user_data[password2]")[0];
+ 
+    var lockIcon = document.getElementById("password-lock-img");
+    var lockIconConfirm = document.getElementById("confirm_password-lock-img");
+    
+    var src_state_password = ""; 
+    var src_state_confirm = "";
+    
+    const email_checkbox = document.getElementById("check_myself_email_box");
+    const phone_checkbox = document.getElementById("check_myself_phone_box");
+    
+    const email_input = document.querySelector("input[name='user_data[email]']");
+    const email_input_copy = document.querySelector("input[name='user_data[fields][63]']");
+    
+    window.onload = () => {
+        email_checkbox.checked = true;
+        email_input_copy.value = email_input.value;
+        
+        phone_checkbox.checked = true;
+        phone_input_copy.value = phone_input.value;
+    }
+    
+    email_input.addEventListener('input', () => {
+        email_input_copy.value = email_input.value;
+    });
+    
+    email_checkbox.addEventListener('change', () => {
+        if (email_checkbox.checked) {
+            email_input_copy.value = email_input.value;
+        }
+        else {
+            email_input_copy.value = '';    
+        }
+    });
+
+    const phone_input = document.querySelector("input[name='user_data[phone]']");
+    const phone_input_copy = document.querySelector("input[name='user_data[s_phone]']");    
+
+    phone_input.addEventListener('input', () => {
+        phone_input_copy.value = phone_input.value;
+    });
+
+    phone_checkbox.addEventListener('change', () => {
+        if (phone_checkbox.checked) {
+            phone_input_copy.value = phone_input.value;
+        }
+        else {
+            phone_input_copy.value = '';    
+        }
+    });
+    
+    if (password){
+        password.addEventListener('input', function() {
+            if (password && password.value.length > 0) {
+                lockIcon.style.display = 'none';                
+                if (!document.getElementById('password-eye-img')) {
+                    var eyeIcon = document.createElement("img");
+                    eyeIcon.setAttribute("id", "password-eye-img");
+                    eyeIcon.src = src_state_password ? src_state_password : "/design/themes/responsive/media/images/addons/ee_change_winrace/show_password_text.svg";
+                    document.getElementById("password-icon-container").appendChild(eyeIcon);
+                    eyeIcon.addEventListener('click', function() {
+                        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                        password.setAttribute('type', type);
+                        eyeIcon.src = type === 'password' ? '/design/themes/responsive/media/images/addons/ee_change_winrace/show_password_text.svg' : '/design/themes/responsive/media/images/addons/ee_change_winrace/hide_password_text.svg' 
+                        src_state_password = eyeIcon.src;
+                    });
+                }  
+            }
+            else {
+                if (document.getElementById('password-eye-img')) {
+                    document.getElementById('password-eye-img').remove();
+                }
+                lockIcon.style.display = 'block';
+            }
+        });
+    }
+    
+    if (passwordConfirm){
+        passwordConfirm.addEventListener('input', function() {
+            if (passwordConfirm && passwordConfirm.value.length > 0) {
+                lockIconConfirm.style.display = 'none';
+                if (password.value != passwordConfirm.value) {
+                    if (!passwordConfirm.parentNode.classList.contains("_form-error")){
+                        passwordConfirm.parentNode.classList.add("_form-error");
+                        if (passwordConfirm.parentNode.classList.contains("_form-error")) {
+                            var error_message = document.createElement("div");
+                            error_message.setAttribute("id", "error-message-confirm-password");
+                            error_message.classList.add("form__error");
+                            error_message.innerText = "Пароли не совпадают";
+                            passwordConfirm.parentNode.insertBefore(error_message, passwordConfirm.nextSibling);   
+                        }
+                    }
+                }
+                else {
+                    passwordConfirm.parentNode.classList.remove("_form-error");
+                    if (document.getElementById("error-message-confirm-password")) {
+                        document.getElementById("error-message-confirm-password").remove();
+                    }
+                    if (error_message) {
+                        error_message.remove();
+                    }
+                }
+                if (!document.getElementById('confirm_password-eye-img')) {
+                    var eyeIcon = document.createElement("img");
+                    eyeIcon.setAttribute("id", "confirm_password-eye-img");
+                    eyeIcon.src = src_state_confirm ? src_state_confirm : "/design/themes/responsive/media/images/addons/ee_change_winrace/show_password_text.svg";
+                    document.getElementById("confirm_password-icon-container").appendChild(eyeIcon);
+                    eyeIcon.addEventListener('click', function() {
+                        const type = passwordConfirm.getAttribute('type') === 'password' ? 'text' : 'password';
+                        passwordConfirm.setAttribute('type', type);
+                        eyeIcon.src = type === 'password' ? '/design/themes/responsive/media/images/addons/ee_change_winrace/show_password_text.svg' : '/design/themes/responsive/media/images/addons/ee_change_winrace/hide_password_text.svg';
+                        src_state_confirm = eyeIcon.src;
+                    });
+                }  
+            }
+            else {
+                if (document.getElementById('confirm_password-eye-img')) {
+                    document.getElementById('confirm_password-eye-img').remove();
+                }
+                lockIconConfirm.style.display = 'block';
+            }
+        });
+    }
+    
+    window.addEventListener("resize", function() {
+        var form_divs = document.querySelectorAll(".text-field");        
+        var username_div = document.querySelector("input[name='user_data[fields][74]']").parentElement;
+        var password_div = document.querySelector("input[name='user_data[password1]']").parentElement;
+        var confirm_div = document.querySelector("input[name='user_data[password2]']").parentElement;       
+        
+        if (window.innerWidth < 768) {  
+            for (let i = 0; i < form_divs.length; i++) {
+                form_divs[i].style.paddingBottom = "10px";
+            }
+            confirm_div.parentNode.insertBefore(password_div, confirm_div);
+        }
+        else {
+            for (let i = 0; i < form_divs.length; i++) {
+                form_divs[i].style.paddingBottom = "0";
+            }
+            username_div.insertAdjacentElement('afterend', password_div);
+        }
+        /*if (window.innerWidth < 567) {
+            document.querySelector(".checkbox.phone-data").style.height = "45px";
+        }
+        else {
+            document.querySelector(".checkbox.phone-data").style.height = "25px";
+        }
+        if (window.innerWidth < 529) {
+            document.querySelector(".checkbox.delivery-data").style.height = "45px";
+        }
+        else {
+            document.querySelector(".checkbox.delivery-data").style.height = "25px";
+        }
+        if (window.innerWidth < 395) {
+            document.querySelector(".checkbox.address-data").style.height = "45px";
+        }
+        else {
+            document.querySelector(".checkbox.address-data").style.height = "25px";
+        }
+        if (window.innerWidth < 332) {
+            document.querySelector(".checkbox.phone-data").style.height = "70px";
+        }*/
+    });      
+    </script>
+
 {if $addons.ee_change_winrace.ee_change_winrace_profile == "Y"}
 	{include file="views/profiles/components/profiles_scripts.tpl"}
 	{$dispatch = "profiles.update"}
 	{if $runtime.action}
 		{$dispatch = "profiles.update.{$runtime.action}"}
-	{/if}		
+	{/if}
+    {$title_breadcrumbs = explode(' ', trim($breadcrumbs[1].title))}
 	{assign var="profile" value=[$profile_fields,$user_data]|fn_ee_change_winrace_remake_profile_fields}
 		<section class="my-profile">
+            {if $title_breadcrumbs[0] == "Регистрация"}
+                <h1 class="my-profile__title firstProfileTitle">Регистрация</h1>
+            {/if}
 			<div class="my-profile__container">            
 				<form id="profile_formprofile_form" name="profile_form" enctype="multipart/form-data" action="{""|fn_url}" method="post">
 					<input id="selected_section" type="hidden" value="general" name="selected_section"/>
@@ -13,7 +205,12 @@
 					<input type="hidden" name="profile_id" value="{$user_data.profile_id}" />
 					{foreach $profile_fields as $k => $v}					
 						{if $k == 'C'}
-							<h2 class="my-profile__title firstProfileTitle">Мой профиль</h2>
+                            {if $title_breadcrumbs[0] == "Регистрация"}
+                                <h2 class="my-profile__title firstProfileTitle">Мой профиль</h2>
+                            {else}
+                                <h1 class="my-profile__title firstProfileTitle">Мой профиль</h1>
+                            {/if}
+							
 							<div class="form-profile__row-inputs">
                                 <div class="text-field text-field_floating">
                                     <input class="text-field__input" name="user_data[email]" id="user_data[email]" type="email" required="" value="{$user_data.email}" placeholder="Email" data-value="" data-error="Не может быть пустым" data-validate="" data-required="">
@@ -27,6 +224,9 @@
                                 <div class="text-field text-field_floating">
                                     <input type="password" id="password1" placeholder="Пароль*" name="user_data[password1]" size="32" maxlength="32" class="text-field__input" autocomplete="off" value="">
                                     <label class="text-field__label" for="password1">Пароль*</label>
+                                    <span id="password-icon-container" class="text-field__password-lock-icon">
+                                        <img id="password-lock-img" class="password-lock-icon-img" src="/design/themes/responsive/media/images/addons/ee_change_winrace/unlock(Traced).svg" alt="lock icon">
+                                    </span>
                                 </div>
 							</div>
 							<div class="form-profile__row-inputs">
@@ -35,6 +235,9 @@
 									data-inputmask="'mask': '+9(999)-999-99-99'" value="{$user_data.phone}" data-value="{$user_data.phone}" class="text-field__input" inputmode="text">
                                     <label class="text-field__label" for="email">Ваш телефон*</label>
                                 </div>
+                                
+                                
+                                
                                 <div class="text-field text-field_floating">
                                     {$date_format = "%d/%m/%Y"}
                                     {$extra = "required"}
@@ -45,34 +248,55 @@
                                     <a class="cm-external-focus ty-calendar__link" data-ca-external-focus-id="{$date_id}">
                                         {include_ext file="common/icon.tpl" class="ty-icon-calendar ty-calendar__button" title=__("calendar")}
                                     </a>
+                                    
+                                    <script src="/js/addons/ee_change_winrace/air-datepicker.js"></script>
                                     <script>
-                                    (function(_, $) {$ldelim}
-                                        $.ceEvent('on', 'ce.commoninit', function(context) {
-                                            $('#{$date_id}').datepicker({
-                                                changeMonth: true,
-                                                duration: 'fast',
-                                                changeYear: true,
-                                                numberOfMonths: 1,
-                                                selectOtherMonths: true,
-                                                showOtherMonths: true,
+					new AirDatepicker('#date_id', {
+			                    maxDate: new Date(),
+					    locale: {
+						days: ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
+						daysMin: ['{__("weekday_abr_0")}', '{__("weekday_abr_1")}', '{__("weekday_abr_2")}', '{__("weekday_abr_3")}', '{__("weekday_abr_4")}', '{__("weekday_abr_5")}', '{__("weekday_abr_6")}'],
+						months: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
+						monthsShort: ['{__("month_name_abr_1")|escape:"html"}', '{__("month_name_abr_2")|escape:"html"}', '{__("month_name_abr_3")|escape:"html"}', '{__("month_name_abr_4")|escape:"html"}', '{__("month_name_abr_5")|escape:"html"}', '{__("month_name_abr_6")|escape:"html"}', '{__("month_name_abr_7")|escape:"html"}', '{__("month_name_abr_8")|escape:"html"}', '{__("month_name_abr_9")|escape:"html"}', '{__("month_name_abr_10")|escape:"html"}', '{__("month_name_abr_11")|escape:"html"}', '{__("month_name_abr_12")|escape:"html"}'],
+						today: 'Today',
+						clear: 'Clear',
+						dateFormat: 'dd/MM/yyyy',
                                                 firstDay: {if $settings.Appearance.calendar_week_format == "sunday_first"}0{else}1{/if},
-                                                dayNamesMin: ['{__("weekday_abr_0")}', '{__("weekday_abr_1")}', '{__("weekday_abr_2")}', '{__("weekday_abr_3")}', '{__("weekday_abr_4")}', '{__("weekday_abr_5")}', '{__("weekday_abr_6")}'],
-                                                monthNamesShort: ['{__("month_name_abr_1")|escape:"html"}', '{__("month_name_abr_2")|escape:"html"}', '{__("month_name_abr_3")|escape:"html"}', '{__("month_name_abr_4")|escape:"html"}', '{__("month_name_abr_5")|escape:"html"}', '{__("month_name_abr_6")|escape:"html"}', '{__("month_name_abr_7")|escape:"html"}', '{__("month_name_abr_8")|escape:"html"}', '{__("month_name_abr_9")|escape:"html"}', '{__("month_name_abr_10")|escape:"html"}', '{__("month_name_abr_11")|escape:"html"}', '{__("month_name_abr_12")|escape:"html"}'],
-                                                yearRange: 'c-70:c+0',
-                                                dateFormat: 'dd/mm/yy'
-                                            });
-                                        });
-                                    {$rdelim}(Tygh, Tygh.$));
-                                    </script>
+					    }
+					});
+				    </script>
+                                    
                                     <input data-inputmask="'mask': '99/99/9999'" placeholder="Дата рождения*" type="text" id="date_id" name="{$date_name}" class="text-field__input cm-calendar"
                                     value="{if $date_val}{$date_val|date_format:"`$date_format`"}{/if}" {$extra} size="10" autocomplete="disabled"  name="user_data[email]" id="user_data[email]">
                                     <label class="text-field__label" for="email">Дата рождения*</label>
-                                </div>			
+                                </div>
+                                
+                                
+                                
 								<div class="text-field text-field_floating">
                                     <input class="text-field__input" name="user_data[password2]" id="password2" type="password" size="32" maxlength="32" placeholder="Подтверждение пароля*" data-value="" data-error="Не может быть пустым" autocomplete="off">
                                     <label class="text-field__label" for="password2">Подтверждение пароля*</label>
-                                </div>					
+                                    <span id="confirm_password-icon-container" class="text-field__password-lock-icon">
+                                        <img id="confirm_password-lock-img" class="password-lock-icon-img" src="/design/themes/responsive/media/images/addons/ee_change_winrace/unlock(Traced).svg" alt="lock icon">
+                                    </span>
+                                </div>
 							</div>
+                            <div class="checkbox delivery-data">
+                                <input id="check_myself_email_box" class="checkbox__input" type="checkbox">
+                                <label for="check_myself_email_box" class="checkbox__label">
+                                    <span class="checkbox__text">Email из моего профиля и моих данных доставки <strong>совпадают</strong></span>
+                                </label>
+                                <input type="hidden" id="check_myself_email_box_val" value="{$user_data.fields.70}" name="user_data[fields][70]" />
+                            </div>
+                            
+                            <div class="checkbox phone-data">
+                                <input id="check_myself_phone_box" class="checkbox__input" type="checkbox">
+                                <label for="check_myself_phone_box" class="checkbox__label">
+                                    <span class="checkbox__text">Телефоны из моего профиля и моих данных доставки <strong>совпадают</strong></span>
+                                </label>
+                                <input type="hidden" id="check_myself_phone_box_val" value="{$user_data.fields.70}" name="user_data[fields][70]" />
+                            </div>    
+                                
 						{/if}
 						{if $k != 'C'}
 						{if $k == 'S'}
@@ -168,7 +392,7 @@
 						{/if}
 						{/if}
 					{/foreach}
-					<div class="checkbox" style="margin-top: 15px; height: 25px;">
+					<div class="checkbox address-data">
 						<input id="check_mystic_box" class="checkbox__input" type="checkbox"
 						{if $user_data.fields.70 == 'Y'}checked{/if} />
 						<label for="check_mystic_box" class="checkbox__label">
@@ -176,7 +400,7 @@
 						</label>
 						<input type="hidden" id="check_mystic_box_val" value="{$user_data.fields.70}" name="user_data[fields][70]" />
 					</div>
-					<div class="form-profile__bottom" style="margin-top: 15px;">			
+					<div class="form-profile__bottom" style="margin-top: 28px;">			
 						{include file="buttons/save.tpl" but_name="dispatch[{$dispatch}]" but_meta="ty-btn__secondary" but_id="save_profile_but"}
 					</div>			
 				</form>

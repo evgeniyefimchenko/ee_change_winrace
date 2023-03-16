@@ -1,0 +1,1 @@
+{script src="js/addons/ee_change_winrace/adm_script.js"}
